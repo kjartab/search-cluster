@@ -1,0 +1,10 @@
+---
+- hosts: default
+  become: yes
+  tasks:
+    - yum: name=nano
+    - template: elasticsearch.yml.j2
+    
+
+  roles:
+    - geerlingguy.elasticsearch
