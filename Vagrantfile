@@ -7,18 +7,17 @@ Vagrant.configure("2") do |config|
         config.vm.network :private_network, ip: "172.16.16.50"
         config.vm.box = "ubuntu/trusty64"
 
-        config.vm.provision "shell", path: "provision/setup.sh"
-
-          # config.vm.provision "shell",
-          #   inline: "apt install -y ansible && ansible-galaxy install geerlingguy.elasticsearch"
+        config.vm.provision "ansible_local" do |ansible|
+            ansible.playbook = "provision/rolesplaybook.yaml"
+            ansible.groups = {
+                'default' => [ "master-node" ]
+            }
+        end
 
         config.vm.provision "ansible_local" do |ansible|
             ansible.playbook = "provision/playbook.yaml"
             ansible.groups = {
                 'default' => [ "master-node" ]
-            }        
-            ansible.extra_vars = {
-                es_node: '172.16.16.50'
             }
         end
     end
@@ -30,15 +29,17 @@ Vagrant.configure("2") do |config|
             config.vm.network :private_network, ip: "172.16.16.#{i+100}"
             config.vm.box = "ubuntu/trusty64"
 
-            config.vm.provision "shell", path: "provision/setup.sh"
+            config.vm.provision "ansible_local" do |ansible|
+                ansible.playbook = "provision/rolesplaybook.yaml"
+                ansible.groups = {
+                    'default' => [ "master-node" ]
+                }
+            end
 
             config.vm.provision "ansible_local" do |ansible|
                 ansible.playbook = "provision/playbook.yaml"
                 ansible.groups = {
                     'default' => [ "node-%d" ]
-                }
-                ansible.extra_vars = {
-                    es_node: "172.16.16.#{i+100}"
                 }
             end
             
