@@ -30,12 +30,12 @@ Vagrant.configure("2") do |config|
     # end
 
 
-    (1..1).each do |i|
+    (1..5).each do |i|
         config.vm.define vm_name = "node-%d" % i do |config|
 
             config.vm.provider "virtualbox" do |vb|
-                vb.memory = 1000
-                vb.cpus = 1
+                vb.memory = 12000
+                vb.cpus = 3
             end
 
             config.vm.hostname = vm_name
