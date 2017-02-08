@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
         config.vm.box = "ubuntu/trusty64"
 
           config.vm.provision "shell",
-            inline: "yum install -y ansible && ansible-galaxy install geerlingguy.elasticsearch"
+            inline: "apt install -y ansible && ansible-galaxy install geerlingguy.elasticsearch"
 
         config.vm.provision "ansible_local" do |ansible|
             ansible.playbook = "provision/playbook.yaml"
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
             config.vm.box = "ubuntu/trusty64"
 
           config.vm.provision "shell",
-            inline: "yum install -y ansible && ansible-galaxy install geerlingguy.elasticsearch"
+            inline: "apt install -y ansible && ansible-galaxy install geerlingguy.elasticsearch"
 
             config.vm.provision "ansible_local" do |ansible|
                 ansible.playbook = "provision/playbook.yaml"
