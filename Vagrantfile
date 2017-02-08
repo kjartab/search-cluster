@@ -7,8 +7,10 @@ Vagrant.configure("2") do |config|
         config.vm.network :private_network, ip: "172.16.16.50"
         config.vm.box = "ubuntu/trusty64"
 
-          config.vm.provision "shell",
-            inline: "apt install -y ansible && ansible-galaxy install geerlingguy.elasticsearch"
+        config.vm.provision "shell", path: "provision/setup.sh"
+
+          # config.vm.provision "shell",
+          #   inline: "apt install -y ansible && ansible-galaxy install geerlingguy.elasticsearch"
 
         config.vm.provision "ansible_local" do |ansible|
             ansible.playbook = "provision/playbook.yaml"
@@ -24,8 +26,11 @@ Vagrant.configure("2") do |config|
             config.vm.network :private_network, ip: "172.16.16.#{i+100}"
             config.vm.box = "ubuntu/trusty64"
 
-          config.vm.provision "shell",
-            inline: "apt install -y ansible && ansible-galaxy install geerlingguy.elasticsearch"
+
+            config.vm.provision "shell", path: "provision/setup.sh"
+
+          # config.vm.provision "shell",
+          #   inline: "apt install -y ansible && ansible-galaxy install geerlingguy.elasticsearch"
 
             config.vm.provision "ansible_local" do |ansible|
                 ansible.playbook = "provision/playbook.yaml"
