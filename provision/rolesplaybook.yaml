@@ -1,6 +1,6 @@
 ---
 - name: toptour
-  hosts: "{{ hosts_input | default('default') }}"
+  hosts: default
   become: yes
 
   tasks:
