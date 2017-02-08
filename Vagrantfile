@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
             config.vm.hostname = vm_name
             config.vm.network :private_network, ip: "172.16.16.#{i+100}"
             config.vm.box = "ubuntu/trusty64"
-            
+
             config.vm.provision "shell", path: "provision/setup.sh"
 
             config.vm.provision "ansible_local" do |ansible|
@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
                     'default' => [ "node-%d" ]
                 }
                 ansible.extra_vars = {
-                    'es_node' : "node-%d"
+                    es_node : "node-%d"
                 }
             end
             
