@@ -2,7 +2,7 @@
 - hosts: default
   become: yes
   tasks:
-    - yum: name=nano
+    - apt: name=nano
     - template: elasticsearch.yml.j2
     
 
