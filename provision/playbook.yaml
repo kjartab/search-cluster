@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - apt: name=nano
-    # - template: elasticsearch.yml.j2
+    - template: src=elasticsearch.yml.j2 dest=/etc/elasticsearch/elasticsearch.yml
     
   roles:
     - geerlingguy.elasticsearch
